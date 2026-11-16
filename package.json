@@ -1,0 +1,35 @@
+{
+  "name": "new-folder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "dev": "nodemon backend/server.js",
+    "start": "node backend/server.js",
+    "chat": "nodemon backend/chatServer.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "jest": "^30.3.0",
+    "supertest": "^7.2.2"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.9.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "ioredis": "^5.10.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^7.0.3",
+    "mysql2": "^3.16.0",
+    "nodemon": "^2.0.22",
+    "socket.io": "^4.8.3"
+  }
+}

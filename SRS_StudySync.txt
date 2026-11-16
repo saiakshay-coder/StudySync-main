@@ -1,0 +1,125 @@
+Software Requirements Specification (SRS)
+
+Project: StudySync
+Version: 1.2
+Date: 2026-04-23
+
+1. Functional Requirements
+
+FR1. The system shall allow users to register unique accounts.
+
+FR2. The system shall authenticate users and establish a valid session.
+
+FR3. The system shall uniquely identify each authenticated user during all interactions.
+
+FR4. The system shall restrict protected operations to authenticated users.
+
+FR5. The system shall allow users to create and manage study groups.
+
+FR6. The system shall allow users to discover and view available groups.
+
+FR7. The system shall allow users to request membership to groups.
+
+FR8. The system shall allow authorized users to approve or reject group membership requests.
+
+FR9. The system shall allow authorized users to create and manage sessions within groups.
+
+FR10. The system shall allow group members to view sessions associated with their groups.
+
+FR11. The system shall support real-time broadcast messaging among authorized group members.
+
+FR12. The system shall support real-time private messaging between authorized users.
+
+FR13. The system shall deliver messages to connected recipients without manual intervention.
+
+FR14. The system shall maintain message history and allow authorized retrieval.
+
+FR15. The system shall detect user connection and disconnection events.
+
+FR16. The system shall maintain user presence information.
+
+FR17. The system shall generate appropriate responses for all user actions, including failures.
+
+FR18. The system shall log relevant system and user activities.
+
+2. Non-Functional Requirements
+
+NFR1. The system shall support concurrent interactions by multiple users without functional conflict.
+
+NFR2. The system shall ensure timely delivery of real-time messages under normal operating conditions.
+
+NFR3. The system shall provide consistent response times for standard user operations.
+
+NFR4. The system shall preserve the order of messages within a communication context.
+
+NFR5. The system shall ensure consistency of user, group, session, and messaging data.
+
+NFR6. The system shall prevent unauthorized access to protected resources.
+
+NFR7. The system shall securely handle sensitive user data.
+
+NFR8. The system shall validate all user requests prior to execution.
+
+NFR9. The system shall maintain timestamped logs for critical events.
+
+NFR10. The system shall provide standardized error responses.
+
+NFR11. The system shall handle unexpected disconnections without impacting other active users.
+
+NFR12. The system shall allow recovery from transient connection failures.
+
+NFR13. The system shall maintain reliable system availability during normal operation.
+
+NFR14. Each requirement shall be testable and verifiable.
+
+3. Acceptance Criteria (High Level)
+
+AC1. A new user can register and successfully authenticate to access the system.
+
+AC2. Unauthenticated users are restricted from accessing protected operations.
+
+AC3. An authenticated user can create a group and view it in their accessible group list.
+
+AC4. A user can request to join a group, and an authorized user can approve or reject the request.
+
+AC5. Authorized users can create sessions within a group and members can view them.
+
+AC6. Users can send and receive real-time broadcast messages within a group.
+
+AC7. Users can send and receive private messages between two authorized participants.
+
+AC8. Messages sent by a user are delivered to intended recipients without manual refresh.
+
+AC9. The system maintains message history and allows retrieval by authorized users.
+
+AC10. The system logs key events including authentication, messaging, and connection changes.
+
+AC11. The system handles user disconnections without affecting other active users.
+
+4. Assumptions and Dependencies
+
+A1. Users provide valid and unique identification credentials during registration.
+
+A2. Network connectivity is available for real-time interactions.
+
+A3. Users interact with the system through a compatible client interface.
+
+A4. System time is consistent for timestamp generation and logging.
+
+5. Constraints
+
+C1. Only authenticated users may perform protected operations.
+
+C2. Group-specific operations are restricted to authorized members.
+
+C3. Administrative actions are limited to users with appropriate privileges.
+
+C4. Messaging operations are permitted only between authorized participants.
+
+6. Verification Criteria
+
+V1. Each functional requirement shall be validated through defined test cases.
+
+V2. Non-functional requirements shall be verified using performance, reliability, and security tests under controlled conditions.
+
+V3. System behavior under failure scenarios shall be tested to ensure graceful handling and recovery.

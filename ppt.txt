@@ -1,0 +1,263 @@
+StudySync PPT Content Plan (Detailed Version)
+
+Slide 1 - Introduction (Title)
+Page Text:
+- StudySync: A unified collaboration platform for student study groups.
+- Vision: replace fragmented chat/scheduling/task habits with one focused environment.
+- Tagline: "Plan together, study together, progress together."
+- Team pain point addressed: most groups lose momentum because communication and planning are split across tools.
+
+Image Description:
+- High-quality hero banner with students collaborating on laptops in a library/co-working style space.
+- Add subtle overlays for app UI cards and network nodes.
+- Clean gradient theme (blue to violet), startup pitch style.
+
+
+Slide 2 - Introduction (Context and Motivation)
+Page Text:
+- Modern students frequently balance:
+  - academic workload,
+  - part-time work,
+  - deadlines across multiple subjects.
+- When collaboration tools are fragmented, groups miss updates and fail to maintain consistent schedules.
+- StudySync is motivated by one core idea:
+  - combine communication, coordination, and continuity in one workflow.
+
+Image Description:
+- Story-driven timeline visual showing a student day with notifications from many tools becoming overwhelming.
+- End the timeline with one simplified StudySync interface.
+
+
+Slide 3 - Problem Statement (Current Reality)
+Page Text:
+- Typical workflow today:
+  - WhatsApp/Discord for chat,
+  - calendar apps for reminders,
+  - separate docs/apps for progress tracking.
+- Key problems:
+  - context switching overhead,
+  - missing accountability,
+  - low visibility into session status.
+- Result: planned group study becomes unstructured and inconsistent.
+
+Image Description:
+- "Tool chaos" collage: many app windows, missed reminder icons, unresolved chat badges.
+- Visual cue of confusion on left side.
+
+
+Slide 4 - What the Website Does (Solution Overview)
+Page Text:
+- StudySync provides integrated capabilities:
+  - secure authentication and personalized onboarding,
+  - group discovery and approval-based joining,
+  - live group chat with shared context,
+  - session tracking by lifecycle stage.
+- Outcomes:
+  - better group governance,
+  - higher participation consistency,
+  - clearer execution of study plans.
+
+Image Description:
+- Capability wheel centered on "StudySync" with four primary spokes:
+  - Auth, Groups, Chat, Sessions.
+
+
+Slide 5 - User Journey (How It Works End-to-End)
+Page Text:
+- Step 1: user registers and logs in securely.
+- Step 2: user searches for a group or creates one.
+- Step 3: admin reviews join requests and approves members.
+- Step 4: group members collaborate in live chat and schedule sessions.
+- Step 5: sessions move from upcoming -> ongoing -> completed for transparent progress.
+
+Image Description:
+- Horizontal journey diagram with 5 numbered milestones and icon per milestone.
+
+
+Slide 6 - System Architecture (High-Level)
+Page Text:
+- Frontend and backend are separated for clarity and scalability.
+- React app handles presentation, route control, and client-state logic.
+- Express API handles core business workflows and validation.
+- Socket.IO server handles real-time messaging as a dedicated channel.
+- Data persistence is workload-specific (hybrid model across SQL, NoSQL, and cache).
+
+Image Description:
+- Top-level architecture block diagram:
+  - Client layer,
+  - API layer,
+  - Realtime layer,
+  - Data layer.
+
+
+Slide 7 - System Architecture (Communication Flow)
+Page Text:
+- Request-response path:
+  - frontend -> REST endpoints for auth/group/session operations.
+- Event path:
+  - frontend <-> Socket.IO for real-time chat events.
+- Data path:
+  - API and socket services persist/fetch from MySQL, MongoDB, and Redis.
+- Auth path:
+  - protected endpoints validated through cookie-based JWT middleware.
+
+Image Description:
+- Arrow-based technical flow with separate colors:
+  - REST flow, realtime flow, and data flow.
+- Include lock icon on auth-protected routes.
+
+
+Slide 8 - Backend Design (Module Structure)
+Page Text:
+- Backend follows layered design:
+  - Routes -> Controllers -> Data access/utils.
+- Middleware responsibilities:
+  - token extraction,
+  - identity validation,
+  - request protection for secured operations.
+- Utility connectors centralize:
+  - SQL pool usage,
+  - Mongo connection,
+  - Redis client access.
+- Benefit: easier maintainability, easier testing, and clean responsibility boundaries.
+
+Image Description:
+- Layered stack diagram with each backend layer in separate horizontal band.
+
+
+Slide 9 - Backend Design (API Domains)
+Page Text:
+- Auth domain:
+  - register, login, current-user profile, logout.
+- Group domain:
+  - create groups, delete groups, search groups,
+  - join requests and admin approvals.
+- Session domain:
+  - create session and fetch by status categories.
+- Realtime domain:
+  - join room, send message, get history, delete post event.
+
+Image Description:
+- API matrix with rows (domain) and columns (actions/endpoints).
+
+
+Slide 10 - Backend Design (Data Responsibilities)
+Page Text:
+- MySQL stores structured entities:
+  - users,
+  - session data,
+  - group request records.
+- MongoDB stores chat-oriented documents with flexible conversation content.
+- Redis supports high-speed retrieval and temporary chat history optimization.
+- Hybrid persistence strategy maps each data type to the best-fit storage engine.
+
+Image Description:
+- Three-database comparison graphic with labels:
+  - MySQL = structured relational,
+  - MongoDB = flexible documents,
+  - Redis = fast in-memory access.
+
+
+Slide 11 - Docker Usage (Why Containers)
+Page Text:
+- StudySync uses containerized data services to avoid machine-specific setup issues.
+- Instead of installing DBs directly on each developer machine:
+  - run standardized infrastructure from one compose file.
+- Primary benefits:
+  - reproducibility,
+  - isolation,
+  - fast onboarding,
+  - cleaner environment resets.
+
+Image Description:
+- Side-by-side comparison:
+  - "Manual local installs" vs "Docker-based standardized setup".
+
+
+Slide 12 - Docker Usage (Actual Command and Workflow)
+Page Text:
+- Compose file location: project root `compose.yaml`.
+- Start all DB services:
+  - `docker compose -f "compose.yaml" up -d`
+- Stop services:
+  - `docker compose -f "compose.yaml" down`
+- Reset DB volumes (fresh data state):
+  - `docker compose -f "compose.yaml" down -v`
+- Recommended practice:
+  - keep app servers local (`npm run dev`, `npm run chat`) while DB services run in containers.
+
+Image Description:
+- Terminal-focused slide showing the exact command sequence with success status indicators.
+
+
+Slide 13 - Frontend Design (Architecture and State)
+Page Text:
+- Frontend built using React + Vite for fast local development and efficient builds.
+- Route handling via React Router with guarded routes for authenticated experiences.
+- Data synchronization:
+  - TanStack Query for API state lifecycle (fetch/cache/revalidate).
+- Local state:
+  - Zustand for lightweight app-level state handling.
+- API abstraction:
+  - Axios wrapper for cleaner request configuration and reuse.
+
+Image Description:
+- Client architecture panel showing routing, query state, local state, and API client layers.
+
+
+Slide 14 - Frontend Design (UX and Interface Strategy)
+Page Text:
+- UI stack:
+  - TailwindCSS for utility-first styling,
+  - DaisyUI for component acceleration,
+  - Framer Motion for modern transitions.
+- UX priorities:
+  - clear navigation,
+  - low friction group actions,
+  - responsive chat + session views.
+- Design goal:
+  - maintain a clean interface even as feature complexity grows.
+
+Image Description:
+- Multi-screen mockup:
+  - login page,
+  - group dashboard,
+  - chat view,
+  - sessions board.
+
+
+Slide 15 - Testing and Quality
+Page Text:
+- Backend testing uses Jest + Supertest for integration-focused verification.
+- Existing tests validate major auth/group workflows and key protections.
+- Quality baseline includes:
+  - predictable resource cleanup (SQL pool, Mongo, Redis),
+  - frontend linting for consistency.
+- Value:
+  - safer refactoring,
+  - lower regression risk,
+  - more confidence in feature delivery.
+
+Image Description:
+- Engineering quality dashboard with:
+  - test pass rate,
+  - scenario checklist,
+  - linter status panel.
+
+
+Slide 16 - Conclusion (Impact and Next Steps)
+Page Text:
+- StudySync transforms fragmented student collaboration into one connected system.
+- Architecture supports both:
+  - real-time communication,
+  - structured session planning and tracking.
+- Containerized database approach strengthens developer reliability and deployment readiness.
+- Near-term roadmap:
+  - richer activity analytics,
+  - stronger CI/CD automation,
+  - production-grade packaging for services.
+- Closing statement:
+  - "StudySync enables study groups to operate like coordinated teams, not disconnected individuals."
+
+Image Description:
+- Closing impact visual with growth curve, collaboration icons, and confident product branding.
